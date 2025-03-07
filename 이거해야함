@@ -1,0 +1,43 @@
+package swea_0307;
+
+import java.util.Scanner;
+
+public class swea_2806 {
+    public static int N;
+    public static boolean[] checked;
+    public static int cnt;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        for (int t = 1; t <= T; t++) {
+            N = sc.nextInt();
+            cnt=0;
+            checked = new boolean[N];
+            queenNeverCry(0);
+            System.out.println(cnt);
+        }
+    }
+
+    public static void queenNeverCry(int depth){
+        if(depth==N){
+            cnt++;
+            return;
+        }
+
+        for (int i = 0; i < N; i++) {
+            if(!checked[i]){
+                checked[i] = true;
+                queenNeverCry(depth + 1);
+                checked[i] = false;
+            }
+        }
+    }
+}
+// 1행 6열에 퀸이 들어있어
+// 그럼 check[5] 를 true로 바꿔줘\ ->  check는 열 확인 t/f
+// 그러면 6열은 이제 어떤것도 못넣어
+// 그럼 2행으로는 어떻게 가지?
+//
+
+// depth가 깊어짐에 따라 check[i]가 false인 곳에 넣어줘
